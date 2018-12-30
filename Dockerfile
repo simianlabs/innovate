@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM arm32v6/nginx:alpine
 
 RUN apk --no-cache add bash openssl
 
