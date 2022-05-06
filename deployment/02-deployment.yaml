@@ -3,6 +3,7 @@ kind: Deployment
 # Opis deploymentu, nepovine udaje
 metadata:
   name: innovate
+  namespace: develop
   # namespave: myapp
 # annotation su nepovine udaje pouzite na popis deploymentu,k tore ale niesu pouzite ako identifikatory pri query
   annotations:
@@ -10,6 +11,16 @@ metadata:
     release: "1.0"
 spec:
   replicas: 4
+  strategy:
+    # type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxUnavailable: 10%
+    #   maxSurge: 10%
 # Selector sluzi na prepojenie servicov s deploymentami
   selector:
     matchLabels:
@@ -38,3 +49,13 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 20
