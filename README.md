@@ -1,4 +1,3 @@
-
 ## Innovate
 
 Simple web site for demo and training purpouse.
