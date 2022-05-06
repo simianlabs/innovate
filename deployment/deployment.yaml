@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: innovate
-        image: monko-cicd.northeurope.azurecontainer.io/innovate:latest
+        image: fsaregistrymonkos.azurecr.io/monko-cicd.northeurope.azurecontainer.io/innovate:latest
         ports:
         - containerPort: 80
         imagePullPolicy: Always
